@@ -1,0 +1,90 @@
+/* Define styles for the form container */
+.user {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #45a049;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
+h1 > span {
+  font-size: 12px;
+}
+
+.user > h2 {
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+.user > form > img {
+  border-radius: 8px;
+  width: 30px;
+}
+.form-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Style form labels and input fields */
+.form-input > label {
+  margin-bottom: 5px;
+  /* text-align: left; */
+  padding: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: #034107;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  background-color: green;
+  width: 80%;
+  color: #fff;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 30px;
+  font-size: 20px;
+}
+input:focus {
+  border: none;
+  outline: none;
+}
+select:focus {
+  border: none;
+  outline: none;
+}
+/* Add some hover effect to the submit button */
+input[type="submit"]:hover {
+  background-color: greenyellow;
+}
+
+.form-input > select {
+  padding: 10px;
+  font-size: 15px;
+  color: #034107;
+  width: 83%;
+}
+.login-btn {
+  padding: 10px 20px;
+  color: #45a049;
+  background-color: #fff;
+  border: 2px solid #45a049;
+  border-radius: 8px;
+}
+.login-btn:hover {
+  color: #fff;
+  background-color: #042e06;
+}

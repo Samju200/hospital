@@ -1,0 +1,61 @@
+.record-details {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  /* grid-column: 250px; */
+  grid-gap: 10px;
+  box-shadow: 0 2px 5px #888;
+  width: 100%;
+}
+.records-header {
+  padding: 20px;
+  width: 100%;
+  background-color: rgb(235, 109, 109);
+  font-size: 15px;
+  color: white;
+}
+.card {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 8px;
+  justify-content: flex-start;
+
+  font-weight: bold;
+}
+.card:nth-child(8) {
+  height: 50px;
+  background-color: blue;
+}
+.card:nth-child(1) {
+  background-color: blue;
+}
+.card:nth-child(2) {
+  background-color: palevioletred;
+}
+
+.card:nth-child(4) {
+  background-color: blue;
+}
+.card:nth-child(5),
+.card:nth-child(3) {
+  background-color: green;
+}
+.card:nth-child(6) {
+  background-color: purple;
+}
+.card:nth-child(7) {
+  background-color: blue;
+}
+.card-title {
+  justify-content: left;
+  align-self: flex-end;
+  font-size: 15px;
+  margin-bottom: 10px;
+}

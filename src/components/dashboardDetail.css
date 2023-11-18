@@ -1,0 +1,88 @@
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0 auto;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  color: #333;
+  font-size: 12px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+th {
+  background-color: aqua;
+}
+
+select {
+  font-size: 16px;
+  padding: 5px;
+}
+
+.dashboard-header {
+  padding: 10px;
+  width: 100%;
+  background-color: rgb(168, 168, 168);
+  font-size: 15px;
+  color: aqua;
+}
+.dashboard-header > span {
+  color: #c7c7c7;
+}
+.dashboard-content {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px #888;
+  margin: 20px;
+}
+.dashboard-cover {
+  box-shadow: 0 2px 5px #888;
+}
+.empty {
+  background-color: rgb(240, 174, 174);
+  padding: 20px;
+}
+.dashboard-content-details {
+  width: 100%;
+  margin: 0 20px;
+  box-shadow: 0 2px 5px #888;
+}
+.dashboard-content-details > label {
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.dashboard-content-details > select {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.visit1 > select {
+  width: 100%;
+}
+.visit1 {
+  padding: 0 10px;
+}
+.service1 > select {
+  width: 96%;
+}
+.dashboard-content-header {
+  background-color: rgb(235, 137, 17);
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+}
+.visit {
+  background-color: purple;
+}
+.service {
+  background-color: indianred;
+}
