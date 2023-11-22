@@ -1,3 +1,7 @@
+.tab {
+  width: 100%;
+  /* margin: 0 auto; */
+}
 table {
   border-collapse: collapse;
   width: 80%;
@@ -41,7 +45,7 @@ select {
   display: flex;
   justify-content: space-between;
   box-shadow: 0 2px 5px #f5f1f1;
-  margin: 20px;
+  /* margin: 20px; */
 }
 .dashboard-cover {
   box-shadow: 0 2px 5px #eeeaea;
