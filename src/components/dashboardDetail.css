@@ -86,3 +86,22 @@ select {
 .service {
   background-color: indianred;
 }
+@media screen and (max-width: 800px) {
+  .dashboard-content {
+    flex-direction: column;
+  }
+  .dashboard-header {
+    width: 95%;
+    margin: 0 auto;
+  }
+  .empty {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .dashboard-content-details {
+    width: 80%;
+  }
+  .dashboard-content-header {
+    margin: 10px auto;
+  }
+}

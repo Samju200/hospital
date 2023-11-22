@@ -6,16 +6,21 @@
   align-items: center;
   padding: 10px;
 }
-.header-logo {
+.logo {
   display: flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
 }
-.header-logo > img {
+.logo > img {
   width: 30px;
   border-radius: 8px;
   margin-right: 10px;
+}
+.menu {
+  display: none;
+  width: 30px !important;
+  height: 30px !important;
 }
 .header-side {
   display: flex;
@@ -82,4 +87,21 @@
   color: #fff;
   border-top-left-radius: 16px;
   border-bottom-left-radius: 16px;
+}
+@media screen and (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+  .sidebar.visible {
+    display: block;
+  }
+  .right_side {
+    margin: 0 auto;
+  }
+  .menu {
+    display: block;
+  }
+  .greater {
+    display: none;
+  }
 }

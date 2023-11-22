@@ -21,7 +21,7 @@ a {
 }
 .records-header {
   padding: 20px;
-  width: 100%;
+  width: 97%;
   background-color: rgb(235, 109, 109);
   font-size: 15px;
   color: white;
@@ -71,4 +71,14 @@ a {
   align-self: flex-end;
   font-size: 15px;
   margin-bottom: 10px;
+}
+@media screen and (max-width: 800px) {
+  .record-details {
+    grid-template-columns: 2fr 2fr;
+    place-items: center;
+  }
+  .records-header {
+    width: 90%;
+    margin: 0 auto;
+  }
 }

@@ -7,15 +7,20 @@ import { sideTabs } from "./data";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../features/auth/authSlice";
+import { MdMenu } from "react-icons/md";
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState(sideTabs[0]);
+  const [showSide, setShowSide] = useState(false);
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+  };
+  const handleShowClick = () => {
+    setShowSide(!showSide);
   };
 
   useEffect(() => {
@@ -34,8 +39,14 @@ function Dashboard() {
     <div className="dashboard">
       <div className="header">
         <div className="header-logo">
-          <img src={Logo} alt="logo" />
-          <h1>Samju</h1>
+          <div className="logo">
+            <img src={Logo} alt="logo" />
+            <h1>Samju</h1>
+          </div>
+
+          <div>
+            <MdMenu className="menu" onClick={handleShowClick} />
+          </div>
         </div>
 
         <div className="header-side">
@@ -46,7 +57,7 @@ function Dashboard() {
         </div>
       </div>
       <div className="dashboard-details">
-        <div className="sidebar">
+        <div className={`sidebar ${showSide ? "visible" : ""}`}>
           <ul>
             {sideTabs.map((tab) => {
               return (
@@ -60,7 +71,7 @@ function Dashboard() {
                     {tab.icon}
                     <p>{tab.label}</p>
                   </button>
-                  {tab.greater}
+                  <p className="greater">{tab.greater}</p>
                 </li>
               );
             })}

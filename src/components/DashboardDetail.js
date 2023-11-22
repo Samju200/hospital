@@ -271,11 +271,7 @@ function DashboardDetail() {
               <h1 className="dashboard-content-header">Registration</h1>
               <label for="yearSelect">Select Year</label>
               <br />
-              <select
-                id="yearSelect"
-                onChange={handleSelectChange}
-                value={year}
-              >
+              <select onChange={handleSelectChange} value={year}>
                 {years.map((year) => (
                   <option key={year} value={year}>
                     {year}
@@ -305,11 +301,7 @@ function DashboardDetail() {
               <h1 class="dashboard-content-header visit">Visit</h1>
               <label for="yearSelect1">Select Year</label>
               <br />
-              <select
-                id="yearSelect"
-                onChange={handleSelectChange}
-                value={year}
-              >
+              <select onChange={handleSelectChange} value={year}>
                 {years.map((year) => (
                   <option key={year} value={year}>
                     {year}
