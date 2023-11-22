@@ -28,10 +28,11 @@ select {
 
 .dashboard-header {
   padding: 10px;
-  width: 100%;
+  width: 97%;
   background-color: rgb(168, 168, 168);
   font-size: 15px;
   color: aqua;
+  margin: 10px auto;
 }
 .dashboard-header > span {
   color: #c7c7c7;
@@ -48,6 +49,7 @@ select {
 .empty {
   background-color: rgb(240, 174, 174);
   padding: 20px;
+  width: 96%;
 }
 .dashboard-content-details {
   width: 100%;

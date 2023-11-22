@@ -104,4 +104,10 @@
   .greater {
     display: none;
   }
+  .dashboard {
+    /* width: 100%; */
+  }
+  .header {
+    /* width: 100%; */
+  }
 }
