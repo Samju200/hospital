@@ -16,8 +16,8 @@ function Account() {
   const [showPatientDetail, setShowPatientDetail] = useState(false);
 
   const [formData, setFormData] = useState({
-    fullName: `${user.fullName}`,
-    phoneNumber: `${user.phoneNumber}`,
+    fullName: `${user?.fullName}`,
+    phoneNumber: `${user?.phoneNumber}`,
 
     amounts: "",
     registrationNumber: ``,

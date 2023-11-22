@@ -84,4 +84,7 @@ a {
   .card {
     width: 88px;
   }
+  .card-title {
+    font-size: 10px;
+  }
 }

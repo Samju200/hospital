@@ -6,13 +6,13 @@
   align-items: center;
   padding: 10px;
 }
-.logo {
+.logoH {
   display: flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
 }
-.logo > img {
+.logoH > img {
   width: 30px;
   border-radius: 8px;
   margin-right: 10px;

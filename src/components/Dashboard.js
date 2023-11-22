@@ -39,7 +39,7 @@ function Dashboard() {
     <div className="dashboard">
       <div className="header">
         <div className="header-logo">
-          <div className="logo">
+          <div className="logoH">
             <img src={Logo} alt="logo" />
             <h1>Samju</h1>
           </div>
