@@ -81,4 +81,7 @@ a {
     width: 90%;
     margin: 0 auto;
   }
+  .card {
+    width: 88px;
+  }
 }
