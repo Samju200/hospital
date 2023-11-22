@@ -1,9 +1,22 @@
+a {
+  text-decoration: none;
+  color: #fff;
+}
+.records {
+  color: #fff;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #fffcfc;
+  background-color: #45a049;
+}
 .record-details {
   display: grid;
   grid-template-columns: 2fr 2fr 2fr 2fr;
-  /* grid-column: 250px; */
   grid-gap: 10px;
-  box-shadow: 0 2px 5px #888;
+  box-shadow: 0 2px 5px #f1eeee;
+  padding: 10px;
   width: 100%;
 }
 .records-header {
@@ -15,9 +28,9 @@
 }
 .card {
   width: 150px;
-  height: 150px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 50px;
+  border: 1px solid #faf7f7;
+  box-shadow: 0 2px 5px rgba(233, 222, 222, 0.1);
   color: #fff;
   margin-top: 10px;
   padding: 10px;

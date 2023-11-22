@@ -39,11 +39,11 @@ select {
 .dashboard-content {
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 2px 5px #888;
+  box-shadow: 0 2px 5px #f5f1f1;
   margin: 20px;
 }
 .dashboard-cover {
-  box-shadow: 0 2px 5px #888;
+  box-shadow: 0 2px 5px #eeeaea;
 }
 .empty {
   background-color: rgb(240, 174, 174);

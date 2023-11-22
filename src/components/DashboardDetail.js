@@ -260,15 +260,15 @@ function DashboardDetail() {
   return (
     <div>
       <div className="tab">
-        <h1 class="dashboard-header">
+        <h1 className="dashboard-header">
           Dashbord <span>/ Overview</span>{" "}
         </h1>
 
-        <div class="dashboard-cover">
-          <div class="empty"></div>
-          <div class="dashboard-content">
-            <div class="dashboard-content-details">
-              <h1 class="dashboard-content-header">Registration</h1>
+        <div className="dashboard-cover">
+          <div className="empty"></div>
+          <div className="dashboard-content">
+            <div className="dashboard-content-details">
+              <h1 className="dashboard-content-header">Registration</h1>
               <label for="yearSelect">Select Year</label>
               <br />
               <select
@@ -327,7 +327,7 @@ function DashboardDetail() {
                     <th>Total</th>
                   </tr>
                 </thead>
-                <tbody id="patientTableBody1">
+                <tbody>
                   {Object.entries(monthVisit).map(([month, data]) => (
                     <tr>
                       <th> {month}</th>
@@ -340,8 +340,10 @@ function DashboardDetail() {
                 </tbody>
               </table>
             </div>
-            <div class="dashboard-content-details service1">
-              <h1 class="dashboard-content-header service">Service Render</h1>
+            <div className="dashboard-content-details service1">
+              <h1 className="dashboard-content-header service">
+                Service Render
+              </h1>
               <label for="yearSelect2">Select Year</label>
               <br />
               <select
@@ -366,7 +368,7 @@ function DashboardDetail() {
                     <th>Total</th>
                   </tr>
                 </thead>
-                <tbody id="patientTableBody2">
+                <tbody>
                   {Object.entries(monthRender).map(([month, data]) => (
                     <tr>
                       <th> {month}</th>
