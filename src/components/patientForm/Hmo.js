@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./patient.css";
 import Logo from "../../img/logo.jpeg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../../api/axiosConfig";
 function Hmo() {
   const regNumbers = Math.floor(Math.random() * 100000);
   const hmoNumbers = Math.floor(Math.random() * 10000);
-  const navigate = useNavigate();
+  const [response, setResponse] = useState("");
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     registrationType: "HMO",
     hmoType: "",
@@ -43,14 +44,28 @@ function Hmo() {
       );
       if (response.status === 200) {
         console.log(response.data);
-        navigate("/");
+        setFormData({
+          registrationType: "HMO",
+          hmoType: "",
+          registrationNumber: `${regNumbers}`,
+          hmoNumber: `${hmoNumbers}`,
+          patientStatus: "",
+          title: "",
+          surname: "",
+          firstname: "",
+          phoneNumber: "",
+          dateOfBirth: "",
+          age: "",
+          address: "",
+          nextOfKinName: "",
+          nextOfKinAddress: "",
+          nextOfKinPhoneNumber: "",
+        });
+        setResponse(response.data);
         return response.data;
       }
-      alert("Patient registered successfully!");
-      setFormData("");
     } catch (error) {
-      console.error("Error registering patient:", error);
-      alert("An error occurred while registering the patient.");
+      setError("Error registering patient:", error);
     }
   };
   return (
@@ -61,6 +76,8 @@ function Hmo() {
       <img src={Logo} alt="logo" />
       <h2>HMO Patient Registration</h2>
       <div class="form-container">
+        {response}
+        {error}
         <form onSubmit={handleFormSubmit}>
           <div className="input-group">
             <label>Registration Number</label>
