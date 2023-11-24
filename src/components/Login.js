@@ -18,14 +18,15 @@ function Login() {
     }
     if (!user) {
       navigate("/login");
+      setError(
+        "Login Fail, check Your Username And Password Again Or You Need to Register."
+      );
     }
   }, [user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
     dispatch(loginUser({ username, password }));
-    setError("Login Fail, check Your Username And Password Again.");
   };
   return (
     <div>

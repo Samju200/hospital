@@ -1,6 +1,5 @@
 .tab {
   width: 100%;
-  /* margin: 0 auto; */
 }
 table {
   border-collapse: collapse;
@@ -11,8 +10,8 @@ table {
 table,
 th,
 td {
-  border: 1px solid black;
-  color: #333;
+  border: 1px solid #fff;
+  color: #fff;
   font-size: 12px;
 }
 
@@ -22,7 +21,7 @@ td {
   text-align: center;
 }
 th {
-  background-color: aqua;
+  background-color: rgb(169, 221, 169);
 }
 
 select {
@@ -44,8 +43,7 @@ select {
 .dashboard-content {
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 2px 5px #f5f1f1;
-  /* margin: 20px; */
+  box-shadow: 0 2px 5px #fff;
 }
 .dashboard-cover {
   box-shadow: 0 2px 5px #eeeaea;
@@ -58,17 +56,19 @@ select {
 .dashboard-content-details {
   width: 100%;
   margin: 0 20px;
-  box-shadow: 0 2px 5px #888;
+  box-shadow: 0 2px 5px #fff;
 }
 .dashboard-content-details > label {
   padding: 10px;
   margin-bottom: 15px;
+  color: #fff;
 }
 .dashboard-content-details > select {
   width: 80%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  color: green;
 }
 .visit1 > select {
   width: 100%;

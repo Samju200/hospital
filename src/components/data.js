@@ -1,9 +1,4 @@
-import {
-  AiFillDashboard,
-  AiFillSetting,
-  AiFillGitlab,
-  AiOutlinePlus,
-} from "react-icons/ai";
+import { AiFillDashboard, AiFillSetting, AiFillGitlab } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdPayments } from "react-icons/md";
 import { BiRadio } from "react-icons/bi";
@@ -15,7 +10,6 @@ import Nurse from "./Nurse";
 import Radiology from "./Radiology";
 import Laboratory from "./Laboratory";
 import Pharmacy from "./Pharmacy";
-import Despensary from "./Despensary";
 import Records from "./Records";
 import DashboardDetail from "./DashboardDetail";
 
@@ -50,13 +44,7 @@ export const sideTabs = [
     content: <Consultation />,
     greater: <FaGreaterThan />,
   },
-  {
-    id: 5,
-    label: "Despensary",
-    icon: <AiOutlinePlus />,
-    content: <Despensary />,
-    greater: <FaGreaterThan />,
-  },
+
   {
     id: 6,
     label: "Pharmacy Store",

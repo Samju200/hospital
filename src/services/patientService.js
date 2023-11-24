@@ -4,8 +4,7 @@ export const patientByRegistrationNumber = async (registrationNumber) => {
   try {
     const response = await api.get(`/api/patient/${registrationNumber}`);
 
-    if (response.status === 200) {
-      console.log(response.data);
+    if (response.data) {
       return response.data;
     } else {
       throw new Error("patient not found");

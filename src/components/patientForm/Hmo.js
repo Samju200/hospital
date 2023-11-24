@@ -35,15 +35,14 @@ function Hmo() {
   };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
     try {
       const response = await api.post(
         "/api/patient/create",
 
         formData
       );
-      if (response.status === 200) {
-        console.log(response.data);
+      if (response.data) {
         setFormData({
           registrationType: "HMO",
           hmoType: "",

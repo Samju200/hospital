@@ -16,8 +16,7 @@ export const register = async (
       role,
     });
 
-    if (response.status === 200) {
-      console.log(response.data);
+    if (response.data) {
       return response.data;
     } else {
       throw new Error("rgistration failed");
