@@ -1,0 +1,43 @@
+.patient-contact {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #45a049;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
+h1 > span {
+  font-size: 12px;
+}
+
+.patient-contact > h2 {
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+.patient-contact > img {
+  border-radius: 8px;
+  width: 30px;
+}
+.contact {
+  display: flex;
+  justify-content: center;
+}
+.contact > table > thead > tr {
+  background: #06eb11;
+}
+.patient-contact > button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #06eb11;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+}
+.fullname {
+  text-transform: capitalize;
+  font-size: 20px;
+  color: #fff;
+}

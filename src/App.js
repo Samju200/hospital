@@ -9,6 +9,7 @@ import Records from "./components/Records";
 import Family from "./components/patientForm/Family";
 import Company from "./components/patientForm/Company";
 import Individual from "./components/patientForm/Individual";
+import PatientContact from "./components/PatientContact";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/family-patient-form" element={<Family />} />
           <Route path="/company-patient-form" element={<Company />} />
           <Route path="/individual-patient-form" element={<Individual />} />
+          <Route path="/patient-contacts" element={<PatientContact />} />
         </Routes>
       </BrowserRouter>
     </div>

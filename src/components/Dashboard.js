@@ -10,7 +10,7 @@ import { logout } from "../features/auth/authSlice";
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState(sideTabs[0]);
-
+  const year = new Date().getFullYear();
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   let navigate = useNavigate();
@@ -70,6 +70,11 @@ function Dashboard() {
 
         <div className="right_side">{activeTab.content}</div>
       </div>
+
+      <footer>
+        {" "}
+        Copyright &copy; SAMJU HOSPITAL <span>{year}</span>{" "}
+      </footer>
     </div>
   );
 }

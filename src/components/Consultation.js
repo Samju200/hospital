@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../api/axiosConfig";
 import "./consultation.css";
 import PatientDetails from "./PatientDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { getPatientByRegistrationNumber } from "../features/patient/patientSlice";
+import {
+  getPatientByRegistrationNumber,
+  nullPatient,
+} from "../features/patient/patientSlice";
 
 function Consultation() {
-  const navigate = useNavigate();
+  const [message, setmessage] = useState();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const patient = useSelector((state) => state.patient.patient);
   const [search, setSearch] = useState("");
-
+  const [error, setError] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -25,11 +28,14 @@ function Consultation() {
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    console.log(search);
-    dispatch(getPatientByRegistrationNumber(search));
-    setShowPatientDetail(true);
-  };
 
+    dispatch(getPatientByRegistrationNumber(search));
+  };
+  useEffect(() => {
+    if (patient) {
+      setShowPatientDetail(true);
+    }
+  }, [patient]);
   const closeModal = () => {
     setShowPatientDetail(false);
   };
@@ -56,19 +62,22 @@ function Consultation() {
 
         formData
       );
-      if (response.status === 200) {
-        console.log(response.data);
-        console.log(formData);
-        console.log(patient);
-
-        alert("doctor registered successfully!");
-        navigate("/");
+      if (response.data) {
+        setmessage(
+          `Doctor report for  Registration Number: ${patient.registrationNumber} registered successfully!`
+        );
+        dispatch(nullPatient());
+        setFormData({
+          reports: "",
+          department: "",
+        });
+        setSearch("");
 
         return response.data;
       }
     } catch (error) {
       console.error("Error registering patient:", error);
-      alert("An error occurred while registering the patient.");
+      setError(`An error occurred while registering the patient.${error}`);
     }
   };
 
@@ -87,6 +96,8 @@ function Consultation() {
         </form>
       </div>
       <h1>Doctor Consultation Report</h1>
+      <p className="message">{message}</p>
+      <p className="error">{error}</p>
       <form onSubmit={handleFormSubmit}>
         <div className="input-group">
           <label>

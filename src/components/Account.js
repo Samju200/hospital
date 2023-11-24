@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../api/axiosConfig";
 import "./consultation.css";
 import PatientDetails from "./PatientDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { getPatientByRegistrationNumber } from "../features/patient/patientSlice";
+import {
+  getPatientByRegistrationNumber,
+  nullPatient,
+} from "../features/patient/patientSlice";
 
 function Account() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const patient = useSelector((state) => state.patient.patient);
   const [search, setSearch] = useState("");
+  const [message, setmessage] = useState();
+  const [error, setError] = useState();
 
   const [showPatientDetail, setShowPatientDetail] = useState(false);
 
@@ -25,10 +29,14 @@ function Account() {
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    console.log(search);
+
     dispatch(getPatientByRegistrationNumber(search));
-    setShowPatientDetail(true);
   };
+  useEffect(() => {
+    if (patient) {
+      setShowPatientDetail(true);
+    }
+  }, [patient]);
 
   const closeModal = () => {
     setShowPatientDetail(false);
@@ -52,23 +60,25 @@ function Account() {
 
     try {
       const response = await api.post(
-        "/api/doctor/create",
+        "/api/account/create",
 
         formData
       );
-      if (response.status === 200) {
+      if (response.data) {
         console.log(response.data);
-        console.log(formData);
-        console.log(patient);
-
-        alert("account registered successfully!");
-        navigate("/");
-
+        setmessage(
+          `Amount to be paid for Registration Number: ${patient.registrationNumber} registered successfully!`
+        );
+        dispatch(nullPatient());
+        setFormData({
+          amounts: "",
+        });
+        setSearch("");
         return response.data;
       }
     } catch (error) {
       console.error("Error registering patient:", error);
-      alert("An error occurred while registering the patient.");
+      setError(`An error occurred while registering the patient.${error}`);
     }
   };
 
@@ -87,6 +97,11 @@ function Account() {
         </form>
       </div>
       <h1> Account Report</h1>
+      {message ? (
+        <p className="message">{message}</p>
+      ) : (
+        <p className="error">{error}</p>
+      )}
       <form onSubmit={handleFormSubmit}>
         <div className="input-group">
           <label>
@@ -118,7 +133,7 @@ function Account() {
 
         <div className="input-group">
           <label>
-            amounts <span>*</span>
+            Amounts <span>*</span>
           </label>
           <textarea
             name="amounts"

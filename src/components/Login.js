@@ -7,6 +7,7 @@ import { loginUser } from "../features/auth/authSlice";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   let navigate = useNavigate();
@@ -24,6 +25,7 @@ function Login() {
     e.preventDefault();
     console.log(username, password);
     dispatch(loginUser({ username, password }));
+    setError("Login Fail, check Your Username And Password Again.");
   };
   return (
     <div>
@@ -33,6 +35,7 @@ function Login() {
         </h1>
         <img src={Logo} alt="logo" />
         <h2>Login</h2>
+
         <form method="post" onSubmit={handleSubmit} className="login-form">
           <div className="input-group">
             <input
@@ -54,6 +57,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <p className="error"> {error}</p>
           <button type="submit" className="btn">
             LOGIN
           </button>

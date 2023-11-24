@@ -12,7 +12,7 @@ function User() {
   const [role, setRole] = useState("");
 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
+  const { user } = useSelector((state) => state.auth);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function User() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(username, fullName, password, phoneNumber, role);
+
     dispatch(registerUser({ username, fullName, password, phoneNumber, role }));
   };
   return (
@@ -96,6 +96,7 @@ function User() {
 
         <input type="submit" value="Register" />
       </form>
+
       <Link to="/login">
         <button className="login-btn">Login</button>
       </Link>

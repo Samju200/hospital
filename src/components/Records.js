@@ -35,7 +35,9 @@ function Records() {
             </div>
 
             <div className="card">
-              <div class="card-title">Patient Contact</div>
+              <Link to="/patient-contacts">
+                <div class="card-title">Patient Contact</div>
+              </Link>
             </div>
 
             <div className="card">

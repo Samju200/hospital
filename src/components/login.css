@@ -65,3 +65,6 @@ input:focus {
   color: #fff;
   background-color: #042e06;
 }
+.error {
+  color: red;
+}

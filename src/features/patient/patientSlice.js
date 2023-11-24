@@ -11,6 +11,9 @@ const patientSlice = createSlice({
     getPatient: (state, action) => {
       state.patient = action.payload;
     },
+    nullPatient: (state) => {
+      state.patient = null;
+    },
   },
 });
 
@@ -30,6 +33,6 @@ export const getPatientByRegistrationNumber = createAsyncThunk(
   }
 );
 
-export const { getPatient } = patientSlice.actions;
+export const { getPatient, nullPatient } = patientSlice.actions;
 
 export default patientSlice.reducer;

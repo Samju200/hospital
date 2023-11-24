@@ -21,7 +21,7 @@
   align-items: flex-start;
 }
 .scroll-button {
-  max-width: 700px; /* Set the desired width */
+  max-width: 500px; /* Set the desired width */
   max-height: 400px; /* Set the desired height */
   overflow-y: auto; /* Enable vertical scrollbar */
   border: 1px solid #ccc; /* Add a border for visibility */
@@ -30,4 +30,10 @@
   padding: 10px;
   margin: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+@media screen and (max-width: 800px) {
+  .scroll-button {
+    max-width: 200px;
+    max-height: 400px;
+  }
 }

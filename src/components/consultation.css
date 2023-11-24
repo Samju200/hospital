@@ -10,7 +10,15 @@
 .input-group > section {
   color: #f4f4;
 }
-
+.message {
+  font-size: 16px;
+  text-transform: capitalize;
+}
+.error {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: red;
+}
 .search {
   display: flex;
   flex-direction: column;
@@ -58,5 +66,11 @@
   }
   .search > input {
     width: 40%;
+  }
+  .modal {
+    padding: 2px;
+    margin-left: -100px;
+
+    width: 70%;
   }
 }

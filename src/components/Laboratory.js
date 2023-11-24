@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../api/axiosConfig";
 import "./consultation.css";
 import PatientDetails from "./PatientDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { getPatientByRegistrationNumber } from "../features/patient/patientSlice";
+import {
+  getPatientByRegistrationNumber,
+  nullPatient,
+} from "../features/patient/patientSlice";
 
 function Laboratory() {
-  const navigate = useNavigate();
+  const [message, setmessage] = useState();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const patient = useSelector((state) => state.patient.patient);
   const [search, setSearch] = useState("");
-
+  const [error, setError] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -26,9 +29,12 @@ function Laboratory() {
     e.preventDefault();
     console.log(search);
     dispatch(getPatientByRegistrationNumber(search));
-    setShowPatientDetail(true);
   };
-
+  useEffect(() => {
+    if (patient) {
+      setShowPatientDetail(true);
+    }
+  }, [patient]);
   const closeModal = () => {
     setShowPatientDetail(false);
   };
@@ -51,23 +57,25 @@ function Laboratory() {
 
     try {
       const response = await api.post(
-        "/api/doctor/create",
+        "/api/lab/create",
 
         formData
       );
-      if (response.status === 200) {
-        console.log(response.data);
-        console.log(formData);
-        console.log(patient);
-
-        alert("Laboratory registered successfully!");
-        navigate("/");
+      if (response.data) {
+        setmessage(
+          `Lab Test for Registration Number: ${patient.registrationNumber} registered successfully!`
+        );
+        dispatch(nullPatient());
+        setFormData({
+          testReports: "",
+        });
 
         return response.data;
       }
     } catch (error) {
       console.error("Error registering patient:", error);
-      alert("An error occurred while registering the patient.");
+      setError(`An error occurred while registering the patient.${error}`);
+      setmessage("");
     }
   };
 
@@ -86,6 +94,12 @@ function Laboratory() {
         </form>
       </div>
       <h1>Laboratory Test Report</h1>
+      {message ? (
+        <p className="message">{message}</p>
+      ) : (
+        <p className="error">{error}</p>
+      )}
+
       <form onSubmit={handleFormSubmit}>
         <div className="input-group">
           <label>

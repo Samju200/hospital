@@ -28,6 +28,7 @@ export const loginUser = createAsyncThunk(
       // Dispatch the user or token to the store
       dispatch(setUser(user)); // Adjust this based on your actual response structure
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }
@@ -46,6 +47,7 @@ export const registerUser = createAsyncThunk(
 
       dispatch(setUser(registerUser));
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }
