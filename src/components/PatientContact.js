@@ -3,8 +3,10 @@ import Logo from "../img/logo.jpeg";
 import "./patientContact.css";
 import api from "../api/axiosConfig";
 import { Link } from "react-router-dom";
+
 function PatientContact() {
   const [patients, setPatients] = useState([]);
+
   const patientContact = async () => {
     try {
       const response = await api.get(`/api/patients`);

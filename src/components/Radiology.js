@@ -17,7 +17,7 @@ function Radiology() {
   const [search, setSearch] = useState("");
   const [error, setError] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
-
+  const [patientErr, setPatientErr] = useState();
   const [formData, setFormData] = useState({
     fullName: `${user?.fullName}`,
     phoneNumber: `${user?.phoneNumber}`,
@@ -29,6 +29,11 @@ function Radiology() {
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     dispatch(getPatientByRegistrationNumber(search));
+    setmessage("");
+    setError("");
+    if (!patient) {
+      setPatientErr("Patient Not Found");
+    }
   };
   useEffect(() => {
     if (patient) {
@@ -70,6 +75,8 @@ function Radiology() {
         setFormData({
           images: "",
           reports: "",
+          fullName: `${user?.fullName}`,
+          phoneNumber: `${user?.phoneNumber}`,
         });
         setSearch("");
 
@@ -86,6 +93,7 @@ function Radiology() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
+          <p className="error">{patientErr}</p>
           <p>Search for patient</p>
           <input
             type="text"

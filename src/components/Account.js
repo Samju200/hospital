@@ -16,14 +16,13 @@ function Account() {
   const [search, setSearch] = useState("");
   const [message, setmessage] = useState();
   const [error, setError] = useState();
-
+  const [patientErr, setPatientErr] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
 
   const [formData, setFormData] = useState({
     fullName: `${user?.fullName}`,
     phoneNumber: `${user?.phoneNumber}`,
-
-    amounts: "",
+    amount: "",
     registrationNumber: ``,
   });
 
@@ -31,6 +30,11 @@ function Account() {
     e.preventDefault();
 
     dispatch(getPatientByRegistrationNumber(search));
+    setmessage("");
+    setError("");
+    if (!patient) {
+      setPatientErr("Patient Not Found");
+    }
   };
   useEffect(() => {
     if (patient) {
@@ -40,6 +44,7 @@ function Account() {
 
   const closeModal = () => {
     setShowPatientDetail(false);
+    setPatientErr("");
   };
   useEffect(() => {
     // Assuming patient is an object with registrationNumber property
@@ -71,7 +76,9 @@ function Account() {
         );
         dispatch(nullPatient());
         setFormData({
-          amounts: "",
+          amount: "",
+          fullName: `${user?.fullName}`,
+          phoneNumber: `${user?.phoneNumber}`,
         });
         setSearch("");
         return response.data;
@@ -86,6 +93,7 @@ function Account() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
+          <p className="error">{patientErr}</p>
           <p>Search for patient</p>
           <input
             type="text"
@@ -136,11 +144,11 @@ function Account() {
             Amounts <span>*</span>
           </label>
           <textarea
-            name="amounts"
+            name="amount"
             rows="6"
             required
             placeholder=" Enter Your Report"
-            value={formData.amounts}
+            value={formData.amount}
             onChange={handleChange}
           ></textarea>
         </div>

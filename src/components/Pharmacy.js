@@ -17,7 +17,7 @@ function Pharmacy() {
   const [search, setSearch] = useState("");
   const [error, setError] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
-
+  const [patientErr, setPatientErr] = useState();
   const [formData, setFormData] = useState({
     fullName: `${user?.fullName}`,
     phoneNumber: `${user?.phoneNumber}`,
@@ -30,6 +30,11 @@ function Pharmacy() {
     e.preventDefault();
     console.log(search);
     dispatch(getPatientByRegistrationNumber(search));
+    setmessage("");
+    setError("");
+    if (!patient) {
+      setPatientErr("Patient Not Found");
+    }
   };
   useEffect(() => {
     if (patient) {
@@ -69,6 +74,8 @@ function Pharmacy() {
         dispatch(nullPatient());
         setFormData({
           drugs: "",
+          fullName: `${user?.fullName}`,
+          phoneNumber: `${user?.phoneNumber}`,
         });
         setSearch("");
 
@@ -84,6 +91,7 @@ function Pharmacy() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
+          <p className="error">{patientErr}</p>
           <p>Search for patient</p>
           <input
             type="text"

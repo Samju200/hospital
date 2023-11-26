@@ -17,6 +17,7 @@ function Laboratory() {
   const [search, setSearch] = useState("");
   const [error, setError] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
+  const [patientErr, setPatientErr] = useState();
 
   const [formData, setFormData] = useState({
     fullName: `${user?.fullName}`,
@@ -29,6 +30,11 @@ function Laboratory() {
     e.preventDefault();
     console.log(search);
     dispatch(getPatientByRegistrationNumber(search));
+    setmessage("");
+    setError("");
+    if (!patient) {
+      setPatientErr("Patient Not Found");
+    }
   };
   useEffect(() => {
     if (patient) {
@@ -66,10 +72,13 @@ function Laboratory() {
           `Lab Test for Registration Number: ${patient.registrationNumber} registered successfully!`
         );
         dispatch(nullPatient());
+
+        setSearch("");
         setFormData({
           testReports: "",
+          fullName: `${user?.fullName}`,
+          phoneNumber: `${user?.phoneNumber}`,
         });
-
         return response.data;
       }
     } catch (error) {
@@ -83,6 +92,7 @@ function Laboratory() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
+          <p className="error">{patientErr}</p>
           <p>Search for patient</p>
           <input
             type="text"

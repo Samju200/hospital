@@ -7,6 +7,7 @@ import { sideTabs } from "./data";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../features/auth/authSlice";
+import { getAllPatients } from "../features/patients/patientsSlice";
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState(sideTabs[0]);
@@ -15,6 +16,9 @@ function Dashboard() {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(getAllPatients);
+  });
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };

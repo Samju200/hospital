@@ -16,11 +16,12 @@ function Consultation() {
   const patient = useSelector((state) => state.patient.patient);
   const [search, setSearch] = useState("");
   const [error, setError] = useState();
+  const [patientErr, setPatientErr] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
 
   const [formData, setFormData] = useState({
-    fullName: `${user?.fullName}`,
-    phoneNumber: `${user?.phoneNumber}`,
+    fullName: `${user.fullName}`,
+    phoneNumber: `${user.phoneNumber}`,
     department: "",
     reports: "",
     registrationNumber: ``,
@@ -28,8 +29,12 @@ function Consultation() {
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(search);
     dispatch(getPatientByRegistrationNumber(search));
+    setmessage("");
+    if (!patient) {
+      setPatientErr("Patient Not Found");
+    }
   };
   useEffect(() => {
     if (patient) {
@@ -38,6 +43,7 @@ function Consultation() {
   }, [patient]);
   const closeModal = () => {
     setShowPatientDetail(false);
+    setError("");
   };
   useEffect(() => {
     // Assuming patient is an object with registrationNumber property
@@ -64,12 +70,14 @@ function Consultation() {
       );
       if (response.data) {
         setmessage(
-          `Doctor report for  Registration Number: ${patient.registrationNumber} registered successfully!`
+          `Doctor report for Registration number ${patient.registrationNumber} registered successfully!`
         );
         dispatch(nullPatient());
         setFormData({
           reports: "",
           department: "",
+          fullName: `${user?.fullName}`,
+          phoneNumber: `${user?.phoneNumber}`,
         });
         setSearch("");
 
@@ -85,6 +93,7 @@ function Consultation() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
+          <p className="error">{patientErr}</p>
           <p>Search for patient</p>
           <input
             type="text"
@@ -96,8 +105,11 @@ function Consultation() {
         </form>
       </div>
       <h1>Doctor Consultation Report</h1>
-      <p className="message">{message}</p>
-      <p className="error">{error}</p>
+      {message ? (
+        <p className="message">{message}</p>
+      ) : (
+        <p className="error">{error}</p>
+      )}
       <form onSubmit={handleFormSubmit}>
         <div className="input-group">
           <label>

@@ -17,6 +17,7 @@ function Nurse() {
   const [search, setSearch] = useState("");
   const [error, setError] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
+  const [patientErr, setPatientErr] = useState();
 
   const [formData, setFormData] = useState({
     fullName: `${user.fullName}`,
@@ -30,6 +31,11 @@ function Nurse() {
     e.preventDefault();
     console.log(search);
     dispatch(getPatientByRegistrationNumber(search));
+    setmessage("");
+    setError("");
+    if (!patient) {
+      setPatientErr("Patient Not Found");
+    }
   };
   useEffect(() => {
     if (patient) {
@@ -70,6 +76,8 @@ function Nurse() {
         setFormData({
           reports: "",
           department: "",
+          fullName: `${user?.fullName}`,
+          phoneNumber: `${user?.phoneNumber}`,
         });
         setSearch("");
 
@@ -85,6 +93,7 @@ function Nurse() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
+          <p className="error">{patientErr}</p>
           <p>Search for patient</p>
           <input
             type="text"
