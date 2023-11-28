@@ -12,7 +12,7 @@ function User() {
   const [role, setRole] = useState("");
 
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, error } = useSelector((state) => state.auth);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -93,7 +93,7 @@ function User() {
             <option value="accountant">Accountant</option>
           </select>
         </div>
-
+        <p className="error">{error}</p>
         <input type="submit" value="Register" />
       </form>
 

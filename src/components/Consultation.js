@@ -13,10 +13,10 @@ function Consultation() {
   const [message, setmessage] = useState();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  const patient = useSelector((state) => state.patient.patient);
+  const { patient, patientError } = useSelector((state) => state.patient);
   const [search, setSearch] = useState("");
   const [error, setError] = useState();
-  const [patientErr, setPatientErr] = useState();
+
   const [showPatientDetail, setShowPatientDetail] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -33,12 +33,12 @@ function Consultation() {
     dispatch(getPatientByRegistrationNumber(search));
     setmessage("");
     if (!patient) {
-      setPatientErr("Patient Not Found");
     }
   };
   useEffect(() => {
     if (patient) {
       setShowPatientDetail(true);
+      console.log(patient);
     }
   }, [patient]);
   const closeModal = () => {
@@ -93,7 +93,7 @@ function Consultation() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
-          <p className="error">{patientErr}</p>
+          <p className="error">{patientError}</p>
           <p>Search for patient</p>
           <input
             type="text"

@@ -6,6 +6,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: storedUser || null,
+    error: "",
   },
   reducers: {
     setUser: (state, action) => {
@@ -15,6 +16,9 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null;
       localStorage.setItem("user", JSON.stringify(""));
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
   },
 });
@@ -29,6 +33,7 @@ export const loginUser = createAsyncThunk(
       dispatch(setUser(user)); // Adjust this based on your actual response structure
     } catch (error) {
       console.log(error);
+      dispatch(setError(error.message));
       throw error;
     }
   }
@@ -48,10 +53,11 @@ export const registerUser = createAsyncThunk(
       dispatch(setUser(registerUser));
     } catch (error) {
       console.log(error);
+      dispatch(setError(error.message));
       throw error;
     }
   }
 );
-export const { setUser, logout } = authSlice.actions;
+export const { setUser, logout, setError } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -72,7 +72,7 @@ function Family() {
       </h1>
       <img src={Logo} alt="logo" />
       <h2>Family Registration</h2>
-      <div class="form-container">
+      <div className="form-container">
         {response}
         {error}
         <form onSubmit={handleFormSubmit}>

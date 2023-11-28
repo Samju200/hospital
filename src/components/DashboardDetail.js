@@ -49,7 +49,6 @@ function DashboardDetail() {
 
     // Iterate through months and display patient counts
     for (const month of months) {
-      console.log(month);
       updatedMonthRegistration[month] = patientData[month];
     }
 
@@ -151,8 +150,6 @@ function DashboardDetail() {
       };
       // Calculate the total for the month
     }
-
-    console.log(updatedMonthVisit);
 
     setMonthVisit(updatedMonthVisit);
   }
@@ -269,7 +266,7 @@ function DashboardDetail() {
           <div className="dashboard-content">
             <div className="dashboard-content-details">
               <h1 className="dashboard-content-header">Registration</h1>
-              <label for="yearSelect">Select Year</label>
+              <label>Select Year</label>
               <br />
               <select onChange={handleSelectChange} value={year}>
                 {years.map((year) => (
@@ -286,20 +283,19 @@ function DashboardDetail() {
                     <th>Patient Count</th>
                   </tr>
                 </thead>
-
-                {Object.keys(monthRegistration).map((month) => (
-                  <tr>
-                    <th> {month}</th>
-                    <td>{monthRegistration[month]}</td>
-                  </tr>
-                ))}
-
-                <tbody id="patientTableBody"></tbody>
+                <tbody>
+                  {Object.keys(monthRegistration).map((month) => (
+                    <tr key={month}>
+                      <td> {month}</td>
+                      <td>{monthRegistration[month]}</td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
-            <div class="dashboard-content-details visit1">
-              <h1 class="dashboard-content-header visit">Visit</h1>
-              <label for="yearSelect1">Select Year</label>
+            <div className="dashboard-content-details visit1">
+              <h1 className="dashboard-content-header visit">Visit</h1>
+              <label>Select Year</label>
               <br />
               <select onChange={handleSelectChange} value={year}>
                 {years.map((year) => (
@@ -321,8 +317,8 @@ function DashboardDetail() {
                 </thead>
                 <tbody>
                   {Object.entries(monthVisit).map(([month, data]) => (
-                    <tr>
-                      <th> {month}</th>
+                    <tr key={month}>
+                      <td> {month}</td>
                       <td>{data.HMO}</td>
                       <td>{data.Company}</td>
                       <td>{data.Private}</td>
@@ -336,13 +332,9 @@ function DashboardDetail() {
               <h1 className="dashboard-content-header service">
                 Service Render
               </h1>
-              <label for="yearSelect2">Select Year</label>
+              <label>Select Year</label>
               <br />
-              <select
-                id="yearSelect"
-                onChange={handleSelectChange}
-                value={year}
-              >
+              <select onChange={handleSelectChange} value={year}>
                 {years.map((year) => (
                   <option key={year} value={year}>
                     {year}
@@ -362,8 +354,8 @@ function DashboardDetail() {
                 </thead>
                 <tbody>
                   {Object.entries(monthRender).map(([month, data]) => (
-                    <tr>
-                      <th> {month}</th>
+                    <tr key={month}>
+                      <td> {month}</td>
                       <td>{data.Lab}</td>
                       <td>{data.Pharm}</td>
                       <td>{data.Rad}</td>

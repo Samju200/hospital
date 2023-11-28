@@ -49,7 +49,7 @@
 .modal {
   padding: 20px;
   border-radius: 5px;
-  width: 60%;
+  width: 40%;
   margin-left: 200px;
   box-shadow: 0 2px 5px #faf7f7;
   background-color: #45a049;
@@ -59,7 +59,10 @@
   float: right;
 }
 /* Add additional styling as needed */
-
+input[type="file"] {
+  background: #fff;
+  color: #45a049;
+}
 @media screen and (max-width: 600px) {
   .search {
     align-items: center;

@@ -7,9 +7,9 @@ import { loginUser } from "../features/auth/authSlice";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
+  const { user, error } = useSelector((state) => state.auth);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -18,9 +18,6 @@ function Login() {
     }
     if (!user) {
       navigate("/login");
-      setError(
-        "Login Fail, check Your Username And Password Again Or You Need to Register."
-      );
     }
   }, [user, navigate]);
 

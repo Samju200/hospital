@@ -70,7 +70,7 @@ function Company() {
       </h1>
       <img src={Logo} alt="logo" />
       <h2>Company Patient Registration</h2>
-      <div class="form-container">
+      <div className="form-container">
         {response}
         {error}
         <form onSubmit={handleFormSubmit}>

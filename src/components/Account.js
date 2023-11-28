@@ -12,11 +12,11 @@ import {
 function Account() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  const patient = useSelector((state) => state.patient.patient);
+  const { patient, patientError } = useSelector((state) => state.patient);
   const [search, setSearch] = useState("");
   const [message, setmessage] = useState();
   const [error, setError] = useState();
-  const [patientErr, setPatientErr] = useState();
+
   const [showPatientDetail, setShowPatientDetail] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -33,7 +33,6 @@ function Account() {
     setmessage("");
     setError("");
     if (!patient) {
-      setPatientErr("Patient Not Found");
     }
   };
   useEffect(() => {
@@ -44,7 +43,7 @@ function Account() {
 
   const closeModal = () => {
     setShowPatientDetail(false);
-    setPatientErr("");
+    setError("");
   };
   useEffect(() => {
     // Assuming patient is an object with registrationNumber property
@@ -93,7 +92,7 @@ function Account() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
-          <p className="error">{patientErr}</p>
+          <p className="error">{patientError}</p>
           <p>Search for patient</p>
           <input
             type="text"

@@ -6,6 +6,7 @@ const patientSlice = createSlice({
   name: "patient",
   initialState: {
     patient: null,
+    patientError: null,
   },
   reducers: {
     getPatient: (state, action) => {
@@ -13,6 +14,9 @@ const patientSlice = createSlice({
     },
     nullPatient: (state) => {
       state.patient = null;
+    },
+    errorPatient: (state, action) => {
+      state.patientError = action.payload;
     },
   },
 });
@@ -27,12 +31,14 @@ export const getPatientByRegistrationNumber = createAsyncThunk(
 
       // Dispatch the user or token to the store
       dispatch(getPatient(getPatientByRegistration)); // Adjust this based on your actual response structure
+      dispatch(errorPatient(""));
     } catch (error) {
+      dispatch(errorPatient(`Patient not found ${error.message}`));
       throw error;
     }
   }
 );
 
-export const { getPatient, nullPatient } = patientSlice.actions;
+export const { getPatient, nullPatient, errorPatient } = patientSlice.actions;
 
 export default patientSlice.reducer;

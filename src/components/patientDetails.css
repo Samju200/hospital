@@ -15,10 +15,19 @@
 .scroll-button > h3 > span {
   color: #000;
 }
-.patient-details > .nurse {
+
+.nurse {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+.report-details {
+  border: 1px solid white;
+  padding: 20px;
+}
+.report-details > p {
+  text-transform: capitalize;
+  text-wrap: wrap;
 }
 .scroll-button {
   max-width: 500px; /* Set the desired width */

@@ -13,27 +13,21 @@ function Radiology() {
   const [message, setmessage] = useState();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  const patient = useSelector((state) => state.patient.patient);
+  const { patient, patientError } = useSelector((state) => state.patient);
   const [search, setSearch] = useState("");
   const [error, setError] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
-  const [patientErr, setPatientErr] = useState();
-  const [formData, setFormData] = useState({
-    fullName: `${user?.fullName}`,
-    phoneNumber: `${user?.phoneNumber}`,
-    images: "",
-    reports: "",
-    registrationNumber: ``,
-  });
+  const [fullName, setFullName] = useState(`${user?.fullName}`);
+  const [phoneNumber, setPhoneNumber] = useState(`${user?.phoneNumber}`);
+  const [file, setFile] = useState(null);
+  const [reports, setReports] = useState("");
+  const [registrationNumber, setRegistrationNumber] = useState("");
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     dispatch(getPatientByRegistrationNumber(search));
     setmessage("");
     setError("");
-    if (!patient) {
-      setPatientErr("Patient Not Found");
-    }
   };
   useEffect(() => {
     if (patient) {
@@ -42,49 +36,51 @@ function Radiology() {
   }, [patient]);
   const closeModal = () => {
     setShowPatientDetail(false);
+    setError("");
   };
   useEffect(() => {
     // Assuming patient is an object with registrationNumber property
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      registrationNumber: patient?.registrationNumber || "", // Set it dynamically
-    }));
+    setRegistrationNumber(`${patient?.registrationNumber}` || "");
+    //
   }, [patient]);
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await api.post(
-        "/api/radiology/create",
-
-        formData
-      );
+      const formData = new FormData();
+      formData.append("fullName", fullName);
+      formData.append("phoneNumber", phoneNumber);
+      formData.append("file", file);
+      formData.append("reports", reports);
+      formData.append("registrationNumber", registrationNumber);
+      const response = await api.post("/api/radiology/create", formData);
+      console.log(fullName, phoneNumber, file, reports, registrationNumber);
       if (response.data) {
         setmessage(
           `Radiology Images for Registration Number ${patient.registrationNumber} registered successfully!`
         );
         setError("");
         dispatch(nullPatient());
-        setFormData({
-          images: "",
-          reports: "",
-          fullName: `${user?.fullName}`,
-          phoneNumber: `${user?.phoneNumber}`,
-        });
+        setReports("");
+        setFile("");
         setSearch("");
 
         return response.data;
       }
     } catch (error) {
       console.error("Error registering patient:", error);
-      setError(`An error occurred while registering the patient.${error}`);
+      console.log(error.response);
+      setError(
+        `An error occurred while registering the patient.${error.message}`
+      );
+      console.log({
+        fullName,
+        phoneNumber,
+        file,
+        reports,
+        registrationNumber,
+      });
       setmessage("");
     }
   };
@@ -93,7 +89,7 @@ function Radiology() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
-          <p className="error">{patientErr}</p>
+          <p className="error">{patientError}</p>
           <p>Search for patient</p>
           <input
             type="text"
@@ -117,11 +113,8 @@ function Radiology() {
           </label>
           <input
             type="text"
-            name="fullName"
-            placeholder=" Enter Your Full Name"
-            required
-            value={formData.fullName}
-            onChange={handleChange}
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
           />
         </div>
 
@@ -131,25 +124,15 @@ function Radiology() {
           </label>
           <input
             type="text"
-            name="phoneNumber"
-            placeholder=" Enter the patient Phonenumber"
-            required
-            value={formData.phoneNumber}
-            onChange={handleChange}
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
           />
         </div>
         <div className="input-group">
           <label>
             Radiology Images <span>*</span>
           </label>
-          <input
-            type="file"
-            name="images"
-            placeholder=" Enter the patient Phonenumber"
-            required
-            value={formData.images}
-            onChange={handleChange}
-          />
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         </div>
 
         <div className="input-group">
@@ -161,8 +144,8 @@ function Radiology() {
             rows="6"
             required
             placeholder=" Enter Your Report"
-            value={formData.reports}
-            onChange={handleChange}
+            value={reports}
+            onChange={(e) => setReports(e.target.value)}
           ></textarea>
         </div>
 

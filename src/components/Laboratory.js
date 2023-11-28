@@ -13,11 +13,10 @@ function Laboratory() {
   const [message, setmessage] = useState();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  const patient = useSelector((state) => state.patient.patient);
+  const { patient, patientError } = useSelector((state) => state.patient);
   const [search, setSearch] = useState("");
   const [error, setError] = useState();
   const [showPatientDetail, setShowPatientDetail] = useState(false);
-  const [patientErr, setPatientErr] = useState();
 
   const [formData, setFormData] = useState({
     fullName: `${user?.fullName}`,
@@ -32,9 +31,6 @@ function Laboratory() {
     dispatch(getPatientByRegistrationNumber(search));
     setmessage("");
     setError("");
-    if (!patient) {
-      setPatientErr("Patient Not Found");
-    }
   };
   useEffect(() => {
     if (patient) {
@@ -43,6 +39,7 @@ function Laboratory() {
   }, [patient]);
   const closeModal = () => {
     setShowPatientDetail(false);
+    setError("");
   };
   useEffect(() => {
     // Assuming patient is an object with registrationNumber property
@@ -92,7 +89,7 @@ function Laboratory() {
     <div className="section">
       <div className="search">
         <form onSubmit={handleSearchSubmit}>
-          <p className="error">{patientErr}</p>
+          <p className="error">{patientError}</p>
           <p>Search for patient</p>
           <input
             type="text"

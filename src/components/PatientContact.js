@@ -1,31 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Logo from "../img/logo.jpeg";
 import "./patientContact.css";
-import api from "../api/axiosConfig";
+
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPatients } from "../features/patients/patientsSlice";
 
 function PatientContact() {
-  const [patients, setPatients] = useState([]);
+  const dispatch = useDispatch();
+  const patients = useSelector((state) => state.patients?.patients);
 
-  const patientContact = async () => {
-    try {
-      const response = await api.get(`/api/patients`);
-
-      if (response.data) {
-        setPatients(response.data);
-        console.log(response.data);
-        return response.data;
-      } else {
-        throw new Error("patients not found");
-      }
-    } catch (error) {
-      console.log(error);
-      throw new Error("Error getting patient");
-    }
-  };
   useEffect(() => {
-    patientContact();
-  });
+    // Dispatch the action to fetch all patients when the component mounts
+    dispatch(getAllPatients());
+  }, [dispatch]);
+
   return (
     <div className="patient-contact">
       <h1>
@@ -44,8 +33,8 @@ function PatientContact() {
             </tr>
           </thead>
           <tbody>
-            {patients.map((patient, index) => (
-              <tr key={patient.id}>
+            {patients?.map((patient, index) => (
+              <tr key={index}>
                 <th>{index + 1}</th>
                 <td className="regN">{patient.registrationNumber}</td>
                 <td className="fullname">

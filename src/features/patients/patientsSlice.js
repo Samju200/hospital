@@ -7,19 +7,21 @@ const patientsSlice = createSlice({
   initialState: {
     patients: null,
   },
-  reducers: {
-    getPatients: (state, action) => {
-      state.patients = action.payload;
-      localStorage.setItem("patients", JSON.stringify(state.patients));
-    },
-    nullPatients: (state) => {
-      state.patients = null;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllPatients.fulfilled, (state, action) => {
+        state.patients = action.payload;
+        localStorage.setItem("patients", JSON.stringify(action.payload));
+      })
+      .addCase(getAllPatients.rejected, (state, action) => {
+        // Handle rejection if needed
+      });
   },
 });
 
 export const getAllPatients = createAsyncThunk(
-  "patients/getAllPatients",
+  "patients/getPatients",
   async () => {
     try {
       const getAllPatients = await allPatients();
@@ -31,7 +33,6 @@ export const getAllPatients = createAsyncThunk(
     }
   }
 );
-
-export const { getPatients, nullPatients } = patientsSlice.actions;
+// export const { getPatients } = patientsSlice.actions;/
 
 export default patientsSlice.reducer;
