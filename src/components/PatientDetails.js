@@ -80,15 +80,25 @@ function PatientDetails({ patient }) {
         <h2>Radiology images Info About the Patient</h2>
         <div className="nurse">
           {patient?.radiology.map((rad, index) => (
+            // console.log("Base64 Image Data:", rad.images)
             <div key={index} className="report-details">
               <p>Radiologist Name: {rad.fullName}</p>
+
               {rad.images && (
-                <img
-                  src={rad.images}
-                  alt={`Radiology  for ${rad.fullName}`}
-                  style={{ maxWidth: "100%", maxHeight: "200px" }}
-                />
+                <div className="image-container">
+                  <img
+                    src={`data:image/png;base64,${rad.images.data}`}
+                    alt={`Radiology for ${rad.fullName}`}
+                    className="small-image"
+                  />
+                  <img
+                    src={`data:image/png;base64,${rad.images.data}`}
+                    alt={`Larger Radiology for ${rad.fullName}`}
+                    className="large-image"
+                  />
+                </div>
               )}
+
               <p>Radiology Reports: {rad.reports}</p>
               <p>
                 {" "}

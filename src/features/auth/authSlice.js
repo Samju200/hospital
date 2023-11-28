@@ -53,7 +53,7 @@ export const registerUser = createAsyncThunk(
       dispatch(setUser(registerUser));
     } catch (error) {
       console.log(error);
-      dispatch(setError(error.message));
+      dispatch(setError(`${error.message} check your username and password`));
       throw error;
     }
   }
