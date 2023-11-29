@@ -37,7 +37,8 @@ h1 > span {
 
 input[type="text"],
 input[type="password"],
-select {
+select,
+input[type="file"] {
   width: 80%;
   padding: 10px;
   margin-bottom: 15px;
@@ -45,7 +46,11 @@ select {
   border-radius: 8px;
   color: #034107;
 }
-
+input[type="file"] {
+  background: #fff;
+  color: #45a049;
+  cursor: pointer;
+}
 /* Style the submit button */
 input[type="submit"] {
   background-color: green;

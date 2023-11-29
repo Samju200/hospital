@@ -40,15 +40,9 @@ export const loginUser = createAsyncThunk(
 );
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
-  async ({ username, password, fullName, phoneNumber, role }, { dispatch }) => {
+  async (formData, { dispatch }) => {
     try {
-      const registerUser = await register(
-        username,
-        fullName,
-        password,
-        phoneNumber,
-        role
-      );
+      const registerUser = await register(formData);
 
       dispatch(setUser(registerUser));
     } catch (error) {

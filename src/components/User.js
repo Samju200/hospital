@@ -10,6 +10,7 @@ function User() {
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [role, setRole] = useState("");
+  const [file, setFile] = useState(null);
 
   const dispatch = useDispatch();
   const { user, error } = useSelector((state) => state.auth);
@@ -23,8 +24,14 @@ function User() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(registerUser({ username, fullName, password, phoneNumber, role }));
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("fullName", fullName);
+    formData.append("password", password);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("role", role);
+    formData.append("file", file);
+    dispatch(registerUser(formData));
   };
   return (
     <div className="user">
@@ -92,6 +99,13 @@ function User() {
             <option value="phamarcy">Phamarcy</option>
             <option value="accountant">Accountant</option>
           </select>
+        </div>
+        <div className="form-input">
+          <input
+            type="file"
+            placeholder=" Upoad your Profile Pictures"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
         </div>
         <p className="error">{error}</p>
         <input type="submit" value="Register" />

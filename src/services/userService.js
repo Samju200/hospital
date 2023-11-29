@@ -1,22 +1,11 @@
 import api from "../api/axiosConfig";
 
-export const register = async (
-  username,
-  fullName,
-  password,
-  phoneNumber,
-  role
-) => {
+export const register = async (formData) => {
   try {
-    const response = await api.post("/api/user/create", {
-      username,
-      fullName,
-      password,
-      phoneNumber,
-      role,
-    });
+    const response = await api.post("/api/user/create", formData);
 
     if (response.data) {
+      console.log(response.data);
       return response.data;
     } else {
       throw new Error("rgistration failed");

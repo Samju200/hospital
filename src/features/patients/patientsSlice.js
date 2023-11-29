@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { allPatients } from "../../services/patientsService";
-// const storedPatients = JSON.parse(localStorage.getItem("patients"));
+const storedPatients = JSON.parse(localStorage.getItem("patients"));
 const patientsSlice = createSlice({
   name: "patients",
   initialState: {
-    patients: null,
+    patients: storedPatients || null,
   },
   reducers: {},
   extraReducers: (builder) => {

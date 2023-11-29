@@ -23,6 +23,16 @@
   justify-content: space-between;
   align-items: center;
 }
+.header-side > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+}
+.header-side > p {
+  text-transform: capitalize;
+  font-size: medium;
+  font-weight: bold;
+}
 .header-side > button {
   background-color: #fff;
   color: #042e06;
@@ -31,10 +41,15 @@
   border: none;
   border-radius: 8px;
 }
+.header-side > button:hover {
+  background-color: #0ae215;
+  color: #fff;
+}
 .header-icon {
   width: 30px !important;
   height: 30px !important;
 }
+
 .dashboard-details {
   display: flex;
   margin-top: 0 auto;
