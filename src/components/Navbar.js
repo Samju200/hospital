@@ -12,9 +12,6 @@ function Navbar() {
     dispatch(logout());
   };
   useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
     if (!user) {
       navigate("/login");
     }
