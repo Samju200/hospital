@@ -60,6 +60,7 @@ function Individual() {
           nextOfKinAddress: "",
           nextOfKinPhoneNumber: "",
         });
+        setError("");
 
         return response.data;
       }
@@ -77,8 +78,8 @@ function Individual() {
         <img src={Logo} alt="logo" />
         <h2>Individual Patient Registration</h2>
         <div className="form-container">
-          {response}
-          {error}
+          <p> {response}</p>
+          <p className="error">{error}</p>
           <form onSubmit={handleFormSubmit}>
             <div className="input-group">
               <label>Registration Number</label>

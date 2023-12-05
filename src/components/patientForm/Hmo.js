@@ -63,6 +63,7 @@ function Hmo() {
           nextOfKinPhoneNumber: "",
         });
         setResponse(response.data);
+        setError("");
         return response.data;
       }
     } catch (error) {
@@ -79,8 +80,8 @@ function Hmo() {
         <img src={Logo} alt="logo" />
         <h2>HMO Patient Registration</h2>
         <div className="form-container">
-          {response}
-          {error}
+          <p> {response}</p>
+          <p className="error">{error}</p>
           <form onSubmit={handleFormSubmit}>
             <div className="input-group">
               <label>Registration Number</label>
