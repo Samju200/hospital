@@ -20,6 +20,16 @@ h1 > span {
   border-radius: 8px;
   width: 30px;
 }
+.search-input {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+  align-items: center;
+}
+.search-input > input {
+  width: 40%;
+}
 .contact {
   display: flex;
   justify-content: center;

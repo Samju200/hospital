@@ -61,6 +61,7 @@ function Family() {
           nextOfKinAddress: "",
           nextOfKinPhoneNumber: "",
         });
+        setError("");
         return response.data;
       }
     } catch (error) {
@@ -77,8 +78,8 @@ function Family() {
         <img src={Logo} alt="logo" />
         <h2>Family Registration</h2>
         <div className="form-container">
-          {response}
-          {error}
+          <p> {response}</p>
+          <p className="error">{error}</p>
           <form onSubmit={handleFormSubmit}>
             <div className="input-group">
               <label>Registration Number</label>

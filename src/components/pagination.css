@@ -1,0 +1,56 @@
+.pagination {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  color: #3f3f3f;
+}
+.page-btn {
+  width: 15px !important;
+  height: 15px !important;
+}
+.pagination button {
+  height: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  background: #fff;
+  border: none;
+  border-radius: 3px;
+  margin-top: 20px;
+  color: #45a049;
+}
+.pages {
+  display: flex;
+  justify-content: space-between;
+}
+.pages p {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  color: #45a049;
+}
+.pages button {
+  background: #fff;
+  border: 1px solid #3f3f3f;
+  border-radius: 3px;
+  margin-top: 20px;
+  color: #45a049;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+.pages > .total_pages {
+  border: none;
+}
+.prev_btn {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prev_btn.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+  /* display: none; */
+}

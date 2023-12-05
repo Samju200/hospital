@@ -6,12 +6,14 @@ const patientsSlice = createSlice({
   name: "patients",
   initialState: {
     patients: storedPatients || null,
+    loading: true,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getAllPatients.fulfilled, (state, action) => {
         state.patients = action.payload;
+        state.loading = false;
         localStorage.setItem("patients", JSON.stringify(action.payload));
       })
       .addCase(getAllPatients.rejected, (state, action) => {

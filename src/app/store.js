@@ -4,11 +4,13 @@ import patientReducer from "../features/patient/patientSlice";
 import patientsReducer, {
   getAllPatients,
 } from "../features/patients/patientsSlice";
+import paginationReducer from "../features/pagination/paginationSlice";
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     patient: patientReducer,
     patients: patientsReducer,
+    pagination: paginationReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(/* other middleware */),
