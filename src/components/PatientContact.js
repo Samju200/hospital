@@ -4,27 +4,42 @@ import "./patientContact.css";
 
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPatients } from "../features/patients/patientsSlice";
+import {
+  getAllPatients,
+  getPatientByFirstName,
+  getPatientByReg,
+} from "../features/patients/patientsSlice";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Pagination from "./Pagination";
 
 function PatientContact() {
   const dispatch = useDispatch();
-  const patients = useSelector((state) => state.patients?.patients);
+  const { filteredPatients } = useSelector((state) => state.patients);
   const { currentPage, postsPerPage } = useSelector(
     (state) => state.pagination
   );
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = patients?.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = filteredPatients?.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
 
   useEffect(() => {
     // Dispatch the action to fetch all patients when the component mounts
     dispatch(getAllPatients());
   }, [dispatch]);
 
+  const handleFilterChangeReg = (event) => {
+    const searchTerm = event.target.value;
+    dispatch(getPatientByReg(searchTerm));
+  };
+  const handleFilterChangeFirstName = (event) => {
+    const searchTerm = event.target.value;
+    dispatch(getPatientByFirstName(searchTerm));
+  };
   return (
     <div>
       <Navbar />
@@ -36,8 +51,16 @@ function PatientContact() {
         <img src={Logo} alt="logo" />
         <h2>Patient Contact</h2>
         <div className="search-input">
-          <input type="text" placeholder="Search by Reg Number" />
-          <input type="text" placeholder="Search by firstName" />
+          <input
+            type="text"
+            placeholder="Search by Reg Number"
+            onChange={handleFilterChangeReg}
+          />
+          <input
+            type="text"
+            placeholder="Search by firstName"
+            onChange={handleFilterChangeFirstName}
+          />
         </div>
         <div className="contact">
           <table>

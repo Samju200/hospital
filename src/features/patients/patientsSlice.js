@@ -6,13 +6,28 @@ const patientsSlice = createSlice({
   name: "patients",
   initialState: {
     patients: storedPatients || null,
+    filteredPatients: storedPatients || null,
     loading: true,
   },
-  reducers: {},
+  reducers: {
+    getPatientByReg: (state, action) => {
+      const searchTerm = action.payload;
+      state.filteredPatients = state.patients.filter((patient) =>
+        patient.registrationNumber.includes(searchTerm)
+      );
+    },
+    getPatientByFirstName: (state, action) => {
+      const searchTerm = action.payload.toLowerCase();
+      state.filteredPatients = state.patients.filter((patient) =>
+        patient.firstname.toLowerCase().includes(searchTerm)
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllPatients.fulfilled, (state, action) => {
         state.patients = action.payload;
+        state.filteredPatients = action.payload;
         state.loading = false;
         localStorage.setItem("patients", JSON.stringify(action.payload));
       })
@@ -36,5 +51,5 @@ export const getAllPatients = createAsyncThunk(
   }
 );
 // export const { getPatients } = patientsSlice.actions;/
-
+export const { getPatientByReg, getPatientByFirstName } = patientsSlice.actions;
 export default patientsSlice.reducer;
