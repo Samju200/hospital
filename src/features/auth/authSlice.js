@@ -7,18 +7,22 @@ const authSlice = createSlice({
   initialState: {
     user: storedUser || null,
     error: "",
+    loading: false,
   },
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
+      state.loading = true;
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     logout: (state) => {
       state.user = null;
+      state.loading = false;
       localStorage.setItem("user", JSON.stringify(""));
     },
     setError: (state, action) => {
       state.error = action.payload;
+      state.loading = false;
     },
   },
 });
@@ -27,12 +31,14 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ username, password }, { dispatch }) => {
     try {
+      dispatch(setUser({ loading: true }));
       const user = await login(username, password);
 
-      // Dispatch the user or token to the store
-      dispatch(setUser(user)); // Adjust this based on your actual response structure
+      dispatch(setUser(user));
+      dispatch(setUser({ user, loading: false }));
     } catch (error) {
       console.log(error);
+      dispatch(setUser({ loading: false }));
       dispatch(setError(error.message));
       throw error;
     }

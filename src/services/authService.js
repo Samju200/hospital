@@ -8,7 +8,6 @@ export const login = async (username, password) => {
     });
 
     if (response.data) {
-      console.log(response.data);
       return response.data;
     } else {
       throw new Error("Login failed");

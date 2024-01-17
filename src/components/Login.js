@@ -7,9 +7,10 @@ import { loginUser } from "../features/auth/authSlice";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
-  const { user, error } = useSelector((state) => state.auth);
+  const { user, error, loading } = useSelector((state) => state.auth);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +24,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(loading);
     dispatch(loginUser({ username, password }));
   };
   return (
@@ -55,9 +57,14 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {loading && (
+            <div className="loading">
+              <div className="spinner"></div>
+            </div>
+          )}
           <p className="error"> {error}</p>
           <button type="submit" className="btn">
-            LOGIN
+            {loading ? "LOGGING IN..." : "LOGIN"}
           </button>
         </form>
         <Link to="/forgetpassword">

@@ -43,13 +43,11 @@ export const getAllPatients = createAsyncThunk(
     try {
       const getAllPatients = await allPatients();
 
-      // Dispatch the user or token to the store
-      return getAllPatients; // Adjust this based on your actual response structure
+      return getAllPatients;
     } catch (error) {
       throw error;
     }
   }
 );
-// export const { getPatients } = patientsSlice.actions;/
 export const { getPatientByReg, getPatientByFirstName } = patientsSlice.actions;
 export default patientsSlice.reducer;

@@ -29,8 +29,7 @@ export const getPatientByRegistrationNumber = createAsyncThunk(
         registrationNumber
       );
 
-      // Dispatch the user or token to the store
-      dispatch(getPatient(getPatientByRegistration)); // Adjust this based on your actual response structure
+      dispatch(getPatient(getPatientByRegistration));
       dispatch(errorPatient(""));
     } catch (error) {
       dispatch(errorPatient(`Patient not found ${error.message}`));
