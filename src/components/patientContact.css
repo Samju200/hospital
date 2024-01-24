@@ -51,3 +51,13 @@ h1 > span {
   font-size: 20px;
   color: #fff;
 }
+.download {
+  background-color: #fff;
+  color: #06eb11;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+}
+.download:hover {
+  background-color: #024105;
+}

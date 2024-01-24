@@ -12,7 +12,7 @@ const authSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
-      state.loading = true;
+      // state.loading = true;
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     logout: (state) => {
@@ -24,6 +24,9 @@ const authSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
+    setLoading: (state, action) => {
+      state.loading = true;
+    },
   },
 });
 
@@ -31,15 +34,14 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ username, password }, { dispatch }) => {
     try {
-      dispatch(setUser({ loading: true }));
+      dispatch(setLoading(true));
       const user = await login(username, password);
 
       dispatch(setUser(user));
-      dispatch(setUser({ user, loading: false }));
     } catch (error) {
       console.log(error);
-      dispatch(setUser({ loading: false }));
-      dispatch(setError(error.message));
+
+      dispatch(setError(`${error.message} check your username and password`));
       throw error;
     }
   }
@@ -58,6 +60,6 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
-export const { setUser, logout, setError } = authSlice.actions;
+export const { setUser, logout, setError, setLoading } = authSlice.actions;
 
 export default authSlice.reducer;

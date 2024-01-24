@@ -12,6 +12,7 @@ import {
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Pagination from "./Pagination";
+import CsvDownloader from "react-csv-downloader";
 
 function PatientContact() {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ function PatientContact() {
                 <th>Registration Number</th>
                 <th>Full Name</th>
                 <th>PhoneNumber</th>
+                <th>Download Medical History</th>
               </tr>
             </thead>
             <tbody>
@@ -81,6 +83,13 @@ function PatientContact() {
                     {patient.firstname} {patient.surname}
                   </td>
                   <td>{patient.phoneNumber}</td>
+                  <td>
+                    {" "}
+                    <CsvDownloader
+                      datas={patient.registrationNumber}
+                      className="download"
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -26,9 +26,13 @@ function Navbar() {
 
       <div className="header-side">
         <img
-          src={`data:image/png;base64,${user?.profilePicture?.data}`}
+          src={
+            user?.profilePicture?.data
+              ? `data:image/png;base64,${user.profilePicture.data}`
+              : ""
+          }
           alt="profile"
-        ></img>
+        />
 
         <IoIosNotifications className="header-icon" />
         <p>{user?.username}</p>

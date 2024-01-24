@@ -11,7 +11,6 @@ function PatientDetails({ patient }) {
         <h3>
           Registration Number : <span>{patient?.registrationNumber}</span>
         </h3>
-
         <div className="basic-info">
           <p>age: {patient?.age}</p>
           <p>PhoneNumber: {patient?.phoneNumber}</p>
