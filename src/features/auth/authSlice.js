@@ -38,6 +38,7 @@ export const loginUser = createAsyncThunk(
       const user = await login(username, password);
 
       dispatch(setUser(user));
+      dispatch(setError(""));
     } catch (error) {
       console.log(error);
 
